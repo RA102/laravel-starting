@@ -6,7 +6,38 @@
 
 @section('content')
 <h1>Страница контактов</h1>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab consequuntur cum, dolorem impedit ipsa magnam minima nam necessitatibus odit optio placeat quaerat quidem quo quos rem sunt veniam. Accusantium alias animi aperiam aut delectus deserunt doloremque eaque est ex facilis in maiores molestiae natus nisi, nobis nulla numquam praesentium provident quo quod ratione saepe sint sit soluta sunt vero voluptas. Assumenda aut beatae consequuntur culpa dignissimos, dolore exercitationem fugiat id impedit ipsum, itaque molestias mollitia nemo nobis nostrum perspiciatis praesentium quaerat quia quibusdam repudiandae sapiente similique tempore unde vitae voluptatibus? Aliquid asperiores distinctio earum harum iste neque praesentium provident ratione.
-    </p>
+
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<form action="{{ route('contact-form') }}" method="post">
+    @csrf
+    <div class="form-group">
+        <label for="name">Введите имя</label>
+        <input class="form-control" id="name" type="text" name="name" placeholder="Введите имя" >
+    </div>
+
+    <div class="form-group">
+        <label for="name">Введите Email</label>
+        <input class="form-control" id="email" type="text" name="email" placeholder="Введите email" >
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Тема сообщение</label>
+        <input class="form-control" id="subject" type="text" name="subject" placeholder="Тема сообщение" >
+    </div>
+
+    <div class="form-group">
+        <label for="message">Сообщение</label>
+        <textarea class="form-control" id="message" type="text" name="message" placeholder="Введите сообщение" ></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Отправить</button>
+</form>
 @endsection
